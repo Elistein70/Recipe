@@ -1,0 +1,3 @@
+"""
+EatKosher utilities package
+"""
