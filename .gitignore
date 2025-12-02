@@ -26,11 +26,9 @@ wheels/
 # Streamlit
 .streamlit/secrets.toml
 
-# Database
-data/
-*.db
-*.sqlite
-*.sqlite3
+# Database - ALLOWED for family use backup
+# Note: data/ folder and .db files are tracked for persistence
+# This is OK for single-family use but not recommended for multi-user production
 
 # IDE
 .vscode/
