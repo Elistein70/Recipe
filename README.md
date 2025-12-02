@@ -53,6 +53,13 @@ A complete Streamlit application that provides AI-powered kosher recipe generati
 - Each family has their own recipe collection
 - Simple registration process
 
+### 💾 Recipe Persistence & Backup
+- All recipes automatically saved to SQLite database
+- Database included in GitHub for backup
+- Easy one-command backup script
+- Recipes persist across deployments
+- Perfect for family recipe preservation
+
 ---
 
 ## 🚀 Quick Start
@@ -243,6 +250,41 @@ EatKosher/
 - `rating` (INTEGER, 1-5)
 - `full_text` (TEXT) - Complete recipe markdown
 - `created_at` (TIMESTAMP)
+
+### Recipe Backup & Persistence
+
+Your recipes are stored in `data/recipes.db` and **automatically included in GitHub** for backup.
+
+#### Easy Backup Method
+
+After creating new recipes you want to preserve:
+
+```bash
+# Option 1: Use the backup script (easiest!)
+./backup_recipes.sh
+
+# Option 2: Manual backup
+git add data/recipes.db
+git commit -m "Backup recipes - $(date +%Y-%m-%d)"
+git push
+```
+
+#### Restore from Backup
+
+If you need to get your recipes back:
+
+```bash
+git pull
+# All your recipes are restored!
+```
+
+#### Important Notes
+
+- ✅ Database is tracked in Git for persistence
+- ✅ Your recipes survive app restarts and redeployments
+- ✅ Works perfectly for single-family use
+- ⚠️ Remember to backup after adding important recipes
+- ⚠️ Don't share your repo publicly if you want recipes private
 
 ---
 
