@@ -107,15 +107,31 @@ if st.button("🔮 Generate Recipe", type="primary", use_container_width=True):
             st.session_state.current_recipe = recipe
             st.session_state.current_toggles = toggles
 
-        st.success("Recipe generated! Scroll down to view.")
+        # Check if there was an error
+        if recipe.startswith("Error"):
+            st.error(recipe)
+        else:
+            st.success("Recipe generated! Scroll down to view.")
 
 # Display current recipe if it exists
 if 'current_recipe' in st.session_state and st.session_state.current_recipe:
-    st.markdown("---")
-    st.markdown("## 📖 Your Recipe")
+    # Check if it's an error message
+    if st.session_state.current_recipe.startswith("Error"):
+        st.error(st.session_state.current_recipe)
+        # Add debug info
+        with st.expander("🔧 Debug Info"):
+            st.write("**Raw response:**")
+            st.code(st.session_state.current_recipe)
+    else:
+        st.markdown("---")
+        st.markdown("## 📖 Your Recipe")
 
-    # Display recipe with checkboxes
-    missing_ingredients = display_recipe_with_checkboxes(st.session_state.current_recipe)
+        # Add debug expander to see raw output
+        with st.expander("🔧 Debug: View Raw Recipe"):
+            st.code(st.session_state.current_recipe)
+
+        # Display recipe with checkboxes
+        missing_ingredients = display_recipe_with_checkboxes(st.session_state.current_recipe)
 
     st.markdown("---")
 
